@@ -3,8 +3,6 @@ Vagrant.configure("2") do |config|
   
   config.vm.synced_folder ENV["HOME"] + "\\.aws", "/home/vagrant/.aws", type: "smb"
 
-  config.vm.synced_folder ".", "/vagrant", own
-
   config.vm.provision "ansible_local" do |ansible|
     ansible.provisioning_path = "/vagrant/provisioning"
     ansible.raw_arguments = ["--verbose"]
