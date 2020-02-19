@@ -1,0 +1,9 @@
+---
+
+- name: install awscli
+  pip:
+    name: awscli
+    extra_args: --upgrade
+    state: present
+    executable: pip3
+

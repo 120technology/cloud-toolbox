@@ -1,0 +1,12 @@
+---
+
+- name: get eksctl tar
+  get_url:
+    url: "https://github.com/weaveworks/eksctl/releases/download/{{ eksctl_version }}/eksctl_Linux_amd64.tar.gz"
+    dest: /tmp/
+
+- name: untar eksctl
+  unarchive:
+    remote_src: yes
+    src: /tmp/eksctl_Linux_amd64.tar.gz
+    dest: /usr/local/bin/
