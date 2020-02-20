@@ -1,0 +1,15 @@
+---
+
+- name: Install Microk8s with option --classic
+  snap:
+    name: microk8s
+    classic: yes
+
+- name: Add user to Microk8s group
+  command: usermod -a -G microk8s root
+
+- name: Re-enter user session
+  command: su - $USER
+
+- name: Check cluster status
+  command: microk8s.status --wait-ready

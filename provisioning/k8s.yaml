@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  vars:
+    tf_version: 0.12.16
+    eksctl_version: "latest_release"
+
+  roles:
+    - utilities
+    - python
+    - kubectl
+    - microk8s
