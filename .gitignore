@@ -1,0 +1,5 @@
+.vagrant/
+*.log
+*.retry
+*.box
+.DS_Store
