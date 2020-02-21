@@ -1,9 +1,17 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
 
-  config.vm.define "toolbox" do |toolbox| 
+  config.vm.define "toolbox" do |toolbox|
 
-    toolbox.vm.synced_folder ENV["HOME"] + "\\.aws", "/home/vagrant/.aws", type: "smb"
+    if Vagrant::Util::Platform.windows?
+    then
+      toolbox.vm.synced_folder ENV["HOME"] + "\\.aws", "/home/vagrant/.aws", type: "smb"
+
+    elsif (Vagrant::Util::Platform.darwin? || Vagrant::Util::Platform.linux?)
+    then
+      toolbox.vm.synced_folder ENV["HOME"] + "/.aws", "/home/vagrant/.aws"
+    end
+
 
     toolbox.vm.provision "ansible_local" do |ansible|
       ansible.provisioning_path = "/vagrant/provisioning"
